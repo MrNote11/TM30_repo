@@ -1,0 +1,3 @@
+[submodule "backend"]
+	path = backend
+	url = https://gitlab.com/tm30/payarenamall/e-commerce/backend.git
