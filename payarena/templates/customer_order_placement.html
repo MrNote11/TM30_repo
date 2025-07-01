@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Order Placement</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+        body {
+          background-color: rgb(243, 239, 239);
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          font-family: Inter, sans-serif;
+          box-sizing: border-box;
+          padding: 5vh 0;
+        }
+        .receipt {
+          max-width: 800px;
+          width: 90%;
+          text-align: center;
+          background-color: white;
+          padding: 20px 30px;
+        }
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: contain;
+        }
+        p {
+          white-space: nowrap;
+        }
+        .customer {
+          border-bottom: 2px dashed rgb(205, 201, 201);
+          text-align: left;
+          padding-bottom: 15px;
+          font-size: 16px;
+        }
+        .customer p:first-child {
+          font-weight: 600;
+          color: grey;
+        }
+        .customer p:nth-child(2),
+        .customer p:last-child {
+          font-weight: 400;
+          color: grey;
+        }
+        .order-summary {
+          text-align: left;
+          margin-top: 20px;
+          border-bottom: 2px dashed rgb(205, 201, 201);
+        }
+        .order-summary h3,
+        .items-summary h3 {
+          color: rgb(45, 44, 44);
+          font-size: 17px;
+          font-weight: 700;
+        }
+        .order-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1px 0;
+        }
+        .order-item p {
+          color: rgb(45, 44, 44);
+          font-size: 15px;
+          font-weight: 600;
+          margin-top: 9px;
+        }
+        .order-item:last-child {
+          padding-bottom: 15px;
+        }
+        .items-summary {
+          text-align: left;
+        }
+        .items-summary-container {
+          background-color: rgb(249, 247, 247);
+          padding: 3px 18px;
+          border-radius: 5px;
+        }
+        .items-summary-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .items-summary-item h3 {
+          font-size: 14px;
+        }
+        .items-summary-item p {
+          font-size: 14px;
+          color: rgb(150, 148, 148);
+        }
+        hr {
+          border: none;
+          border-top: 2px solid rgb(209, 206, 206);
+        }
+        .total {
+          margin-top: 30px;
+        }
+        .total-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: -10px;
+        }
+        .total-item h3 {
+          font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+          body {
+            padding: 2vh 0;
+          }
+          .receipt {
+            width: 95%;
+            padding: 15px;
+          }
+          .order-item {
+            align-items: flex-start;
+            padding: 5px 0;
+          }
+          .order-item p {
+            white-space: normal;
+            margin-top: 3px;
+          }
+          .items-summary-item {
+            align-items: flex-start;
+          }
+          .items-summary-item h3,
+          .items-summary-item p {
+            white-space: normal;
+            width: 100%;
+          }
+          .items-summary-item h5 {
+            align-self: flex-end;
+            margin-top: -18px;
+          }
+          .items-summary-item p:last-child {
+            text-align: right;
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .customer p,
+          .order-item p,
+          .items-summary-item h3,
+          .items-summary-item p,
+          .total-item h3 {
+            font-size: 14px;
+          }
+          .order-summary h3,
+          .items-summary h3 {
+            font-size: 16px;
+          }
+          .total-item h3 {
+            margin-top: 5px;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="receipt">
+    <img src="/payarena_logo-1 1.png" alt="Receipt Image"/>
+    <div class="customer">
+        <p>Hi {{name}},</p>
+        <p>Thank you for shopping on PayArena.</p>
+        <p>Here's your receipt for this order.</p>
+    </div>
+    <div class="order-summary">
+        <h3>ORDER SUMMARY</h3>
+
+        <div class="order-item">
+            <p>Order ID:</p>
+            <p>{{ order_id }}</p>
+        </div>
+        <div class="order-item">
+            <p>Order Date and Time:</p>
+            <p>{{ date_paid }}</p>
+        </div>
+        <div class="order-item">
+            <p>Recipient Email Address:</p>
+            <p>{{ email }}</p>
+        </div>
+        <div class="order-item">
+            <p>Recipient Name:</p>
+            <p>{{ name }}</p>
+        </div>
+        <div class="order-item">
+            <p>Recipient Phone Number:</p>
+            <p>{{ phone_number}}</p>
+        </div>
+    </div>
+    <div class="items-summary">
+        <h3>ITEMS SUMMARY</h3>
+        <div class="items-summary-container">
+            <div class="items-summary-item">
+                <h3>{{ product_name}}</h3>
+                <h5>{{ price }}</h5>
+            </div>
+            <div class="items-summary-item" style="margin-top: -20px">
+                <p>{{color || null }} {{size || null }}</p>
+                <p>{{ quantity }}</p>
+            </div>
+            <hr/>
+            <div class="items-summary-item">
+                <h3>{{ product_name }}</h3>
+                <h5>{{ price }}</h5>
+            </div>
+            <div class="items-summary-item" style="margin-top: -20px">
+                <p>{{ color || null }} {{ size || null }}</p>
+                <p>{{ quantity }}</p>
+            </div>
+            <hr/>
+            <div class="items-summary-item">
+                <h3>{{ product_name }}</h3>
+                <h5>{{ price }}</h5>
+            </div>
+            <div class="items-summary-item" style="margin-top: -20px">
+                <p>{{ color || null }} {{size || null}}</p>
+                <p>{{ quantity }}</p>
+            </div>
+            <div class="total">
+                <div class="total-item">
+                    <h3>Sub-total:</h3>
+                    <h3>{{ sub_total }}</h3>
+                </div>
+                <hr/>
+                <div class="total-item">
+                    <h3>Shipping:</h3>
+                    <h3 style="color: rgb(76, 181, 234)">{{ price }}</h3>
+                </div>
+
+                <hr/>
+                <div class="total-item">
+                    <h3 style="font-weight: 600; font-size: 16px">Total:</h3>
+                    <h3 style="font-weight: 600; font-size: 16px">{{ total }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

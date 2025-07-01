@@ -1,0 +1,1 @@
+from .custommiddlewares import RecentlyViewedProductsMiddleware

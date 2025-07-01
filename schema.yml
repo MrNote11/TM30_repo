@@ -1,0 +1,4829 @@
+openapi: 3.0.3
+info:
+  title: PAYARENAMALL
+  version: 0.0.0
+paths:
+  /:
+    get:
+      operationId: root_retrieve
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/address/:
+    get:
+      operationId: account_address_list
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateCustomerAddress'
+          description: ''
+    post:
+      operationId: account_address_create
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerAddress'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerAddress'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerAddress'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCustomerAddress'
+          description: ''
+  /account/address/{id}/:
+    get:
+      operationId: account_address_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAddress'
+          description: ''
+    put:
+      operationId: account_address_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAddress'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomerAddress'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomerAddress'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAddress'
+          description: ''
+    patch:
+      operationId: account_address_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomerAddress'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomerAddress'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomerAddress'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAddress'
+          description: ''
+    delete:
+      operationId: account_address_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /account/change-password/:
+    put:
+      operationId: account_change_password_update
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/forgot-password/:
+    get:
+      operationId: account_forgot_password_retrieve
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: account_forgot_password_create
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/fund-wallet/:
+    post:
+      operationId: account_fund_wallet_create
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/link-verification/{token}/:
+    post:
+      operationId: account_link_verification_create
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/login/:
+    post:
+      operationId: account_login_create
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/refresh-token/:
+    post:
+      operationId: account_refresh_token_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /account/resend-verification/:
+    post:
+      operationId: account_resend_verification_create
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/sign-up/:
+    post:
+      operationId: account_sign_up_create
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/wallet/:
+    get:
+      operationId: account_wallet_retrieve
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: account_wallet_create
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /banks/:
+    get:
+      operationId: banks_retrieve
+      tags:
+      - banks
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/:
+    get:
+      operationId: ecommerce_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/banner-promo/:
+    get:
+      operationId: ecommerce_banner_promo_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBannerList'
+          description: ''
+  /ecommerce/banner-promo/{slug}/:
+    get:
+      operationId: ecommerce_banner_promo_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Banner'
+          description: ''
+  /ecommerce/cart/:
+    get:
+      operationId: ecommerce_cart_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_cart_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/cart/{id}/:
+    get:
+      operationId: ecommerce_cart_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_cart_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/cart/merge/:
+    post:
+      operationId: ecommerce_cart_merge_create
+      description: Merge session cart into user cart upon login.
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/categories/:
+    get:
+      operationId: ecommerce_categories_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/categories/{slug}/:
+    get:
+      operationId: ecommerce_categories_retrieve_2
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/category-filter/:
+    post:
+      operationId: ecommerce_category_filter_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/checkout/:
+    get:
+      operationId: ecommerce_checkout_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_checkout_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/cron/delete-cart/:
+    get:
+      operationId: ecommerce_cron_delete_cart_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/cron/retry-pickup/:
+    get:
+      operationId: ecommerce_cron_retry_pickup_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/dashboard/:
+    get:
+      operationId: ecommerce_dashboard_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/filtered-search/:
+    get:
+      operationId: ecommerce_filtered_search_list
+      parameters:
+      - in: query
+        name: brand
+        schema:
+          type: string
+      - in: query
+        name: category
+        schema:
+          type: string
+      - in: query
+        name: color
+        schema:
+          type: string
+      - in: query
+        name: discount_max
+        schema:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+      - in: query
+        name: discount_min
+        schema:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+      - in: query
+        name: is_featured
+        schema:
+          type: boolean
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: price_max
+        schema:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+      - in: query
+        name: price_min
+        schema:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+      - in: query
+        name: rating
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: size
+        schema:
+          type: string
+      - in: query
+        name: store
+        schema:
+          type: string
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductList'
+          description: ''
+  /ecommerce/mobile/category/:
+    get:
+      operationId: ecommerce_mobile_category_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMobileCategoryList'
+          description: ''
+  /ecommerce/mobile/category/{slug}/:
+    get:
+      operationId: ecommerce_mobile_category_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileCategory'
+          description: ''
+  /ecommerce/mobile/follow/:
+    post:
+      operationId: ecommerce_mobile_follow_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/mobile/store:
+    get:
+      operationId: ecommerce_mobile_store_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedStoreList'
+          description: ''
+  /ecommerce/mobile/store/{slug}/:
+    get:
+      operationId: ecommerce_mobile_store_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store'
+          description: ''
+  /ecommerce/mobile/store/{store_slug}/product:
+    get:
+      operationId: ecommerce_mobile_store_product_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: path
+        name: store_slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedStoreProductList'
+          description: ''
+  /ecommerce/name-enquiry/:
+    get:
+      operationId: ecommerce_name_enquiry_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/order/:
+    get:
+      operationId: ecommerce_order_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: ecommerce_order_update
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/order/{id}/:
+    get:
+      operationId: ecommerce_order_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: ecommerce_order_update_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/order/return/:
+    get:
+      operationId: ecommerce_order_return_retrieve
+      description: To fetch all returned order by the current logged user.
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_order_return_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/order/return/{id}/:
+    get:
+      operationId: ecommerce_order_return_retrieve_2
+      description: To fetch all returned order by the current logged user.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_order_return_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/product/:
+    get:
+      operationId: ecommerce_product_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/product-filter/:
+    post:
+      operationId: ecommerce_product_filter_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/product-types/:
+    get:
+      operationId: ecommerce_product_types_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductTypeList'
+          description: ''
+  /ecommerce/product/{slug}/:
+    get:
+      operationId: ecommerce_product_retrieve_2
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/recently-viewed-products/:
+    get:
+      operationId: ecommerce_recently_viewed_products_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/recommended-products/:
+    get:
+      operationId: ecommerce_recommended_products_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/return-reason/:
+    get:
+      operationId: ecommerce_return_reason_list
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReturnReason'
+          description: ''
+  /ecommerce/return-reason/{id}/:
+    get:
+      operationId: ecommerce_return_reason_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnReason'
+          description: ''
+  /ecommerce/review/:
+    get:
+      operationId: ecommerce_review_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_review_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/search/:
+    get:
+      operationId: ecommerce_search_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/top-selling/:
+    get:
+      operationId: ecommerce_top_selling_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/track-order:
+    get:
+      operationId: ecommerce_track_order_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/wishlist/:
+    get:
+      operationId: ecommerce_wishlist_retrieve
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: ecommerce_wishlist_create
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /ecommerce/wishlist/{id}/:
+    get:
+      operationId: ecommerce_wishlist_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductWishlist'
+          description: ''
+    delete:
+      operationId: ecommerce_wishlist_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - ecommerce
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /fund-wallet:
+    post:
+      operationId: fund_wallet_create
+      tags:
+      - fund-wallet
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /location/states/:
+    get:
+      operationId: location_states_retrieve
+      tags:
+      - location
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /payment-verify:
+    post:
+      operationId: payment_verify_create
+      tags:
+      - payment-verify
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/:
+    get:
+      operationId: seller_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: seller_update
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/add-banner/:
+    post:
+      operationId: seller_add_banner_create
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/banner/:
+    post:
+      operationId: seller_banner_create
+      tags:
+      - seller
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MerchantBannerSerializerOut'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          description: ''
+  /seller/banner/{id}/:
+    get:
+      operationId: seller_banner_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          description: ''
+    put:
+      operationId: seller_banner_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MerchantBannerSerializerOut'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          description: ''
+    patch:
+      operationId: seller_banner_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMerchantBannerSerializerOut'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMerchantBannerSerializerOut'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMerchantBannerSerializerOut'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantBannerSerializerOut'
+          description: ''
+    delete:
+      operationId: seller_banner_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /seller/create-merchant/:
+    post:
+      operationId: seller_create_merchant_create
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/dashboard/:
+    get:
+      operationId: seller_dashboard_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/download-report:
+    get:
+      operationId: seller_download_report_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/get-banner/:
+    get:
+      operationId: seller_get_banner_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/orders/:
+    get:
+      operationId: seller_orders_list
+      description: |-
+        filter_backends: used to specify Django Default FilterSet which creates a FilterSet based on 'filterset_fields'.
+        filterset_class: Used to pass in your written customized FilterSet class, don't use 'filterset_fields' with it.
+        filterset_fields: Used to specify the field name to filter against in the Model.
+
+        Note: The DjangoFilterBackend is not neccessary in the 'filter_backends' if we already passed in our custom
+            FilterSet in filter_class.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMerchantDashboardOrderProductList'
+          description: ''
+  /seller/product-bulk-upload/:
+    post:
+      operationId: seller_product_bulk_upload_create
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/product/image/:
+    post:
+      operationId: seller_product_image_create
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: seller_product_image_destroy
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /seller/product/image/{id}/:
+    post:
+      operationId: seller_product_image_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: seller_product_image_destroy_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /seller/product/reviews/:
+    get:
+      operationId: seller_product_reviews_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/product/reviews/{id}/:
+    get:
+      operationId: seller_product_reviews_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/products/:
+    get:
+      operationId: seller_products_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: seller_products_create
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: seller_products_update
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/products/{id}/:
+    get:
+      operationId: seller_products_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: seller_products_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: seller_products_update_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/returns/:
+    get:
+      operationId: seller_returns_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/stock-values/:
+    get:
+      operationId: seller_stock_values_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/transaction:
+    get:
+      operationId: seller_transaction_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/transaction/{id}/:
+    get:
+      operationId: seller_transaction_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /seller/transactions/:
+    get:
+      operationId: seller_transactions_retrieve
+      tags:
+      - seller
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/brands/:
+    get:
+      operationId: store_brands_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/brands/{brand_id}/:
+    get:
+      operationId: store_brands_retrieve_2
+      parameters:
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/product-categories/:
+    get:
+      operationId: store_product_categories_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/product-categories/{cat_id}/:
+    get:
+      operationId: store_product_categories_retrieve_2
+      parameters:
+      - in: path
+        name: cat_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/product-image/:
+    get:
+      operationId: store_product_image_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/product-review/:
+    get:
+      operationId: store_product_review_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/product-wishlist/:
+    get:
+      operationId: store_product_wishlist_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/products/:
+    get:
+      operationId: store_products_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: store_products_create
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: store_products_update
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/products/{slug}/:
+    get:
+      operationId: store_products_retrieve_2
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: store_products_create_2
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: store_products_update_2
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/shippers/:
+    get:
+      operationId: store_shippers_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/store/:
+    get:
+      operationId: store_store_retrieve
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: store_store_update
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /store/store/{store_id}/:
+    get:
+      operationId: store_store_retrieve_2
+      parameters:
+      - in: path
+        name: store_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: store_store_update_2
+      parameters:
+      - in: path
+        name: store_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - store
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/:
+    get:
+      operationId: superadmin_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/admins/:
+    get:
+      operationId: superadmin_admins_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAdminUserList'
+          description: ''
+    post:
+      operationId: superadmin_admins_create
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+  /superadmin/admins/{id}/:
+    get:
+      operationId: superadmin_admins_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+    put:
+      operationId: superadmin_admins_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+    patch:
+      operationId: superadmin_admins_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+  /superadmin/banner-promo/:
+    get:
+      operationId: superadmin_banner_promo_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_banner_promo_create
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_banner_promo_update
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: superadmin_banner_promo_destroy
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /superadmin/banner-promo/{id}/:
+    get:
+      operationId: superadmin_banner_promo_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_banner_promo_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_banner_promo_update_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: superadmin_banner_promo_destroy_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /superadmin/brand/:
+    get:
+      operationId: superadmin_brand_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBrandList'
+          description: ''
+    post:
+      operationId: superadmin_brand_create
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brand'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Brand'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Brand'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+  /superadmin/brand/{id}/:
+    get:
+      operationId: superadmin_brand_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+    put:
+      operationId: superadmin_brand_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brand'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Brand'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Brand'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+    patch:
+      operationId: superadmin_brand_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBrand'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBrand'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBrand'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+  /superadmin/bulk-upload/:
+    post:
+      operationId: superadmin_bulk_upload_create
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/categories/:
+    get:
+      operationId: superadmin_categories_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductCategoryList'
+          description: ''
+    post:
+      operationId: superadmin_categories_create
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductCategory'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCategory'
+          description: ''
+  /superadmin/categories/{id}/:
+    get:
+      operationId: superadmin_categories_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCategory'
+          description: ''
+    put:
+      operationId: superadmin_categories_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductCategory'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCategory'
+          description: ''
+    patch:
+      operationId: superadmin_categories_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProductCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProductCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProductCategory'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCategory'
+          description: ''
+  /superadmin/customer/:
+    get:
+      operationId: superadmin_customer_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProfileList'
+          description: ''
+  /superadmin/customer/{id}/:
+    get:
+      operationId: superadmin_customer_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /superadmin/download-transaction:
+    get:
+      operationId: superadmin_download_transaction_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/login/:
+    post:
+      operationId: superadmin_login_create
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/merchant-status/:
+    put:
+      operationId: superadmin_merchant_status_update
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/merchant-transaction/:
+    get:
+      operationId: superadmin_merchant_transaction_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAdminMerchantTransactionList'
+          description: ''
+  /superadmin/merchant-transaction/{id}/:
+    get:
+      operationId: superadmin_merchant_transaction_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminMerchantTransaction'
+          description: ''
+  /superadmin/order/{order_product_id}/:
+    get:
+      operationId: superadmin_order_retrieve
+      parameters:
+      - in: path
+        name: order_product_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderProduct'
+          description: ''
+    put:
+      operationId: superadmin_order_update
+      parameters:
+      - in: path
+        name: order_product_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderProduct'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderProduct'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderProduct'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderProduct'
+          description: ''
+  /superadmin/orders/:
+    get:
+      operationId: superadmin_orders_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrderList'
+          description: ''
+  /superadmin/orders/{param}/:
+    get:
+      operationId: superadmin_orders_list_2
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: path
+        name: param
+        schema:
+          type: string
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrderList'
+          description: ''
+  /superadmin/password-reset/:
+    put:
+      operationId: superadmin_password_reset_update
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/product-type/:
+    get:
+      operationId: superadmin_product_type_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_product_type_create
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: superadmin_product_type_destroy
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /superadmin/product-type/{id}/:
+    get:
+      operationId: superadmin_product_type_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_product_type_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: superadmin_product_type_destroy_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /superadmin/products:
+    get:
+      operationId: superadmin_products_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductList'
+          description: ''
+  /superadmin/products/:
+    get:
+      operationId: superadmin_products_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_products_create
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_products_update
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/products/{id}/:
+    get:
+      operationId: superadmin_products_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_products_create_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_products_update_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/roles/:
+    get:
+      operationId: superadmin_roles_list
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleSerializerOut'
+          description: ''
+  /superadmin/seller/:
+    get:
+      operationId: superadmin_seller_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_seller_create
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_seller_update
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/seller/{seller_id}/:
+    get:
+      operationId: superadmin_seller_retrieve_2
+      parameters:
+      - in: path
+        name: seller_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: superadmin_seller_create_2
+      parameters:
+      - in: path
+        name: seller_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_seller_update_2
+      parameters:
+      - in: path
+        name: seller_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/shippers/:
+    get:
+      operationId: superadmin_shippers_retrieve
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_shippers_update
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/shippers/{id}/:
+    get:
+      operationId: superadmin_shippers_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: superadmin_shippers_update_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /superadmin/transaction/:
+    get:
+      operationId: superadmin_transaction_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTransactionList'
+          description: ''
+  /superadmin/transaction/{id}/:
+    get:
+      operationId: superadmin_transaction_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - superadmin
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+  /transaction/:
+    get:
+      operationId: transaction_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - transaction
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTransactionList'
+          description: ''
+  /transaction/{id}/:
+    get:
+      operationId: transaction_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - transaction
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+components:
+  schemas:
+    AdminMerchantTransaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        customer:
+          type: string
+          readOnly: true
+        merchant:
+          type: string
+          readOnly: true
+        transaction_ref:
+          type: string
+        shipper:
+          type: string
+          maxLength: 200
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        delivery_fee:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        order:
+          type: integer
+          nullable: true
+      required:
+      - created_on
+      - customer
+      - id
+      - merchant
+      - shipper
+      - transaction_ref
+      - updated_on
+    AdminTypeEnum:
+      enum:
+      - reviewer
+      - authorizer
+      - admin
+      - super_admin
+      type: string
+      description: |-
+        * `reviewer` - Reviewer
+        * `authorizer` - Authorizer
+        * `admin` - Admin
+        * `super_admin` - Super Admin
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        role:
+          $ref: '#/components/schemas/RoleSerializerOut'
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        update_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_on
+      - email
+      - first_name
+      - id
+      - last_name
+      - role
+      - update_on
+    Banner:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        merchant:
+          type: string
+          readOnly: true
+        category:
+          type: string
+          readOnly: true
+        sub_category:
+          type: string
+          readOnly: true
+        product_type:
+          type: string
+          readOnly: true
+        product:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          readOnly: true
+        fixed_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+          nullable: true
+        percentage_discount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+          nullable: true
+        amount_discount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+          nullable: true
+        discount_type:
+          $ref: '#/components/schemas/DiscountTypeEnum'
+        promo_type:
+          $ref: '#/components/schemas/PromoTypeEnum'
+        details:
+          type: string
+          nullable: true
+        banner_image:
+          type: string
+          format: uri
+          nullable: true
+        position:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/PositionEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        status:
+          $ref: '#/components/schemas/BannerStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - category
+      - created_on
+      - id
+      - merchant
+      - product
+      - product_type
+      - slug
+      - sub_category
+      - title
+      - updated_on
+    BannerStatusEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: |-
+        * `active` - Active
+        * `inactive` - Inactive
+    BlankEnum:
+      enum:
+      - ''
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        image:
+          type: string
+          format: uri
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_on
+      - id
+      - name
+      - updated_on
+    CreateCustomerAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        name:
+          type: string
+          maxLength: 500
+        mobile_number:
+          type: string
+          maxLength: 17
+        locality:
+          type: string
+          nullable: true
+          maxLength: 500
+        landmark:
+          type: string
+          nullable: true
+          maxLength: 500
+        country:
+          type: string
+          maxLength: 100
+        state:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 100
+        town:
+          type: string
+          nullable: true
+          maxLength: 100
+        town_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 50
+        longitude:
+          type: number
+          format: double
+          nullable: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+        is_primary:
+          type: boolean
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        customer:
+          type: integer
+      required:
+      - city
+      - country
+      - customer
+      - id
+      - mobile_number
+      - name
+      - state
+      - updated_on
+    CustomerAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_primary:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        name:
+          type: string
+          maxLength: 500
+        mobile_number:
+          type: string
+          maxLength: 17
+        locality:
+          type: string
+          nullable: true
+          maxLength: 500
+        landmark:
+          type: string
+          nullable: true
+          maxLength: 500
+        country:
+          type: string
+          maxLength: 100
+        state:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 100
+        town:
+          type: string
+          nullable: true
+          maxLength: 100
+        town_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 50
+        longitude:
+          type: number
+          format: double
+          nullable: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        customer:
+          type: integer
+      required:
+      - city
+      - country
+      - customer
+      - id
+      - is_primary
+      - mobile_number
+      - name
+      - state
+      - updated_on
+    DiscountTypeEnum:
+      enum:
+      - fixed
+      - percentage
+      - amount_off
+      type: string
+      description: |-
+        * `fixed` - Fixed Amount
+        * `percentage` - Percentage
+        * `amount_off` - Amount Off
+    FepTypeEnum:
+      enum:
+      - flat
+      - rate
+      type: string
+      description: |-
+        * `flat` - Flat
+        * `rate` - Rate
+    MerchantBannerSerializerOut:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        banner_image:
+          type: string
+          format: uri
+        is_active:
+          type: boolean
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        seller:
+          type: integer
+      required:
+      - banner_image
+      - created_on
+      - id
+      - seller
+      - updated_on
+    MerchantDashboardOrderProduct:
+      type: object
+      properties:
+        order_id:
+          type: string
+          readOnly: true
+        product_name:
+          type: string
+          readOnly: true
+        customer_name:
+          type: string
+          readOnly: true
+        tracking_id:
+          type: string
+          nullable: true
+          maxLength: 200
+        payment_method:
+          type: string
+          nullable: true
+          maxLength: 200
+        date:
+          type: string
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusC7aEnum'
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+      required:
+      - customer_name
+      - date
+      - order_id
+      - product_name
+    MobileCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        products:
+          type: string
+          readOnly: true
+        sub_categories:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        parent:
+          type: integer
+          nullable: true
+        brands:
+          type: array
+          items:
+            type: integer
+      required:
+      - created_on
+      - id
+      - name
+      - products
+      - slug
+      - sub_categories
+      - updated_on
+    Nested:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        parent:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - brands
+      - created_on
+      - id
+      - name
+      - parent
+      - slug
+      - updated_on
+    NullEnum:
+      enum:
+      - null
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order_products:
+          type: string
+          readOnly: true
+        no_of_products:
+          type: string
+          readOnly: true
+        order_calculation:
+          type: string
+          readOnly: true
+        payment_status:
+          $ref: '#/components/schemas/PaymentStatusEnum'
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updates_on:
+          type: string
+          format: date-time
+          readOnly: true
+        cart:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - address
+      - cart
+      - created_on
+      - id
+      - no_of_products
+      - order_calculation
+      - order_products
+      - updates_on
+    OrderProduct:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        seller_id:
+          type: integer
+        store_name:
+          type: string
+        product_name:
+          type: string
+        category:
+          type: string
+        product_image:
+          type: string
+          readOnly: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        discount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+        sub_total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+        shipper_name:
+          type: string
+          nullable: true
+          maxLength: 200
+        company_id:
+          type: string
+          nullable: true
+          maxLength: 200
+        tracking_id:
+          type: string
+          nullable: true
+          maxLength: 200
+        waybill_no:
+          type: string
+          nullable: true
+          maxLength: 200
+        payment_method:
+          type: string
+          nullable: true
+          maxLength: 200
+        delivery_fee:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusC7aEnum'
+        delivery_date:
+          type: string
+          format: date
+          nullable: true
+        booked:
+          type: boolean
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        cancelled_on:
+          type: string
+          format: date-time
+          nullable: true
+        packed_on:
+          type: string
+          format: date-time
+          nullable: true
+        shipped_on:
+          type: string
+          format: date-time
+          nullable: true
+        delivered_on:
+          type: string
+          format: date-time
+          nullable: true
+        returned_on:
+          type: string
+          format: date-time
+          nullable: true
+        payment_on:
+          type: string
+          format: date-time
+          nullable: true
+        refunded_on:
+          type: string
+          format: date-time
+          nullable: true
+        request_for_return:
+          type: boolean
+        order:
+          type: integer
+        cancelled_by:
+          type: integer
+          nullable: true
+      required:
+      - category
+      - created_on
+      - id
+      - order
+      - product_image
+      - product_name
+      - seller_id
+      - store_name
+      - updated_on
+    PaginatedAdminMerchantTransactionList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminMerchantTransaction'
+    PaginatedAdminUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminUser'
+    PaginatedBannerList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Banner'
+    PaginatedBrandList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+    PaginatedMerchantDashboardOrderProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantDashboardOrderProduct'
+    PaginatedMobileCategoryList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MobileCategory'
+    PaginatedOrderList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    PaginatedProductCategoryList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategory'
+    PaginatedProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    PaginatedProductTypeList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+    PaginatedProfileList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+    PaginatedStoreList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Store'
+    PaginatedStoreProductList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/StoreProduct'
+    PaginatedTransactionList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+    PatchedAdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        role:
+          $ref: '#/components/schemas/RoleSerializerOut'
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        update_on:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedBrand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        image:
+          type: string
+          format: uri
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedCustomerAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_primary:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        name:
+          type: string
+          maxLength: 500
+        mobile_number:
+          type: string
+          maxLength: 17
+        locality:
+          type: string
+          nullable: true
+          maxLength: 500
+        landmark:
+          type: string
+          nullable: true
+          maxLength: 500
+        country:
+          type: string
+          maxLength: 100
+        state:
+          type: string
+          maxLength: 100
+        city:
+          type: string
+          maxLength: 100
+        town:
+          type: string
+          nullable: true
+          maxLength: 100
+        town_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 50
+        longitude:
+          type: number
+          format: double
+          nullable: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        customer:
+          type: integer
+    PatchedMerchantBannerSerializerOut:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        banner_image:
+          type: string
+          format: uri
+        is_active:
+          type: boolean
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        seller:
+          type: integer
+    PatchedProductCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+          readOnly: true
+        total_products:
+          type: string
+          readOnly: true
+        total_variants:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        parent:
+          type: integer
+          nullable: true
+    PaymentMethodEnum:
+      enum:
+      - '-'
+      - card
+      - wallet
+      - transfer
+      - pay_attitude
+      type: string
+      description: |-
+        * `-` - -------
+        * `card` - Card
+        * `wallet` - Wallet
+        * `transfer` - Transfer
+        * `pay_attitude` - Pay Attitude
+    PaymentStatusEnum:
+      enum:
+      - success
+      - pending
+      - failed
+      - refunded
+      type: string
+      description: |-
+        * `success` - Success
+        * `pending` - Pending
+        * `failed` - Failed
+        * `refunded` - Refunded
+    PositionEnum:
+      enum:
+      - header_banner
+      - footer_banner
+      - big_banner
+      - medium_banner
+      - small_banner
+      - big_deal
+      - medium_deal
+      - small_deal
+      type: string
+      description: |-
+        * `header_banner` - Header Banner
+        * `footer_banner` - Footer Banner
+        * `big_banner` - Big Banner
+        * `medium_banner` - Medium Banner
+        * `small_banner` - Small Banner
+        * `big_deal` - Big Deal
+        * `medium_deal` - Medium Deal
+        * `small_deal` - Small Deal
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        store:
+          type: string
+          readOnly: true
+        total_stock:
+          type: string
+          readOnly: true
+        brand:
+          type: string
+          readOnly: true
+        brand_id:
+          type: string
+          readOnly: true
+        average_rating:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          readOnly: true
+        product_detail:
+          type: string
+          readOnly: true
+        variants:
+          type: string
+          readOnly: true
+        category_id:
+          type: string
+          readOnly: true
+        category:
+          type: string
+          readOnly: true
+        category_slug:
+          type: string
+          readOnly: true
+        sub_category_id:
+          type: string
+          readOnly: true
+        sub_category:
+          type: string
+          readOnly: true
+        sub_category_slug:
+          type: string
+          readOnly: true
+        product_type:
+          type: string
+          readOnly: true
+        product_type_id:
+          type: string
+          readOnly: true
+        similar:
+          type: string
+          readOnly: true
+        also_viewed_by_others:
+          type: string
+          readOnly: true
+        recently_viewed:
+          type: string
+          readOnly: true
+        merchant_id:
+          type: string
+        checked_by:
+          type: string
+          readOnly: true
+        approved_by:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          nullable: true
+          description: Describe the product
+        tags:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ProductStatusEnum'
+        decline_reason:
+          type: string
+          nullable: true
+          maxLength: 200
+        is_featured:
+          type: boolean
+        view_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        last_viewed_date:
+          type: string
+          format: date-time
+          nullable: true
+        sale_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        published_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - also_viewed_by_others
+      - approved_by
+      - average_rating
+      - brand
+      - brand_id
+      - category
+      - category_id
+      - category_slug
+      - checked_by
+      - created_on
+      - id
+      - image
+      - merchant_id
+      - name
+      - product_detail
+      - product_type
+      - product_type_id
+      - recently_viewed
+      - similar
+      - slug
+      - store
+      - sub_category
+      - sub_category_id
+      - sub_category_slug
+      - total_stock
+      - updated_on
+      - variants
+    ProductCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+          readOnly: true
+        total_products:
+          type: string
+          readOnly: true
+        total_variants:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        parent:
+          type: integer
+          nullable: true
+      required:
+      - brands
+      - created_on
+      - id
+      - name
+      - slug
+      - total_products
+      - total_variants
+      - updated_on
+    ProductStatusEnum:
+      enum:
+      - active
+      - inactive
+      - pending
+      - declined
+      - checked
+      - approve
+      type: string
+      description: |-
+        * `active` - Active
+        * `inactive` - Inactive
+        * `pending` - Pending
+        * `declined` - Declined
+        * `checked` - Checked
+        * `approve` - Approve
+    ProductType:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        sub_category_id:
+          type: integer
+        products:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        percentage_commission:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+          nullable: true
+        fixed_commission:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,48}(?:\.\d{0,2})?$
+          nullable: true
+        commission_applicable:
+          type: boolean
+      required:
+      - id
+      - name
+      - products
+      - slug
+      - sub_category_id
+    ProductWishlist:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          type: string
+          readOnly: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        user:
+          type: integer
+      required:
+      - created_on
+      - id
+      - product
+      - user
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          $ref: '#/components/schemas/User'
+        profile_picture:
+          type: string
+          readOnly: true
+        addresses:
+          type: string
+          readOnly: true
+        verified:
+          type: boolean
+        has_wallet:
+          type: boolean
+        is_merchant:
+          type: string
+          readOnly: true
+        cart:
+          type: string
+          readOnly: true
+        total_purchase_count:
+          type: string
+          readOnly: true
+        recently_viewed_products:
+          type: string
+          readOnly: true
+        following:
+          type: array
+          items:
+            type: integer
+      required:
+      - addresses
+      - cart
+      - id
+      - is_merchant
+      - profile_picture
+      - recently_viewed_products
+      - total_purchase_count
+      - user
+    PromoTypeEnum:
+      enum:
+      - banner
+      - deal
+      - promo
+      type: string
+      description: |-
+        * `banner` - Banner
+        * `deal` - Deal
+        * `promo` - Promo
+    ReturnReason:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        reason:
+          type: string
+          maxLength: 200
+      required:
+      - id
+      - reason
+    RoleSerializerOut:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        admin_type:
+          $ref: '#/components/schemas/AdminTypeEnum'
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_on
+      - id
+      - updated_on
+    Seller:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          readOnly: true
+        last_name:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          format: email
+        phone_number:
+          type: string
+        detail:
+          type: string
+          readOnly: true
+        file:
+          type: string
+          readOnly: true
+        store:
+          type: string
+          readOnly: true
+        bank_details:
+          type: string
+          readOnly: true
+        checked_by:
+          type: string
+          readOnly: true
+        approved_by:
+          type: string
+          readOnly: true
+        address:
+          type: string
+          nullable: true
+          maxLength: 100
+        merchant_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        biller_code:
+          type: string
+          nullable: true
+          maxLength: 200
+        fep_type:
+          $ref: '#/components/schemas/FepTypeEnum'
+        feel:
+          type: string
+          nullable: true
+          maxLength: 200
+        town:
+          type: string
+          nullable: true
+          maxLength: 100
+        town_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        city:
+          type: string
+          nullable: true
+          maxLength: 100
+        state:
+          type: string
+          nullable: true
+          maxLength: 100
+        longitude:
+          type: number
+          format: double
+          nullable: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+        profile_picture:
+          type: string
+          format: uri
+          nullable: true
+        status:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/SellerStatusEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        follower:
+          type: array
+          items:
+            type: integer
+      required:
+      - approved_by
+      - bank_details
+      - checked_by
+      - created_on
+      - detail
+      - email
+      - file
+      - first_name
+      - id
+      - last_name
+      - phone_number
+      - store
+      - updated_on
+    SellerStatusEnum:
+      enum:
+      - active
+      - inactive
+      - pending
+      - approve
+      - checked
+      type: string
+      description: |-
+        * `active` - Active
+        * `inactive` - Inactive
+        * `pending` - Pending
+        * `approve` - Approve
+        * `checked` - Checked
+    StatusC7aEnum:
+      enum:
+      - cancelled
+      - processed
+      - shipped
+      - delivered
+      - returned
+      - paid
+      - refunded
+      - pending
+      type: string
+      description: |-
+        * `cancelled` - Cancelled
+        * `processed` - Processed
+        * `shipped` - Shipped
+        * `delivered` - Delivered
+        * `returned` - Returned
+        * `paid` - Paid
+        * `refunded` - Refunded
+        * `pending` - Pending
+    Store:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        seller:
+          $ref: '#/components/schemas/Seller'
+        products:
+          type: string
+          readOnly: true
+        total_follower:
+          type: string
+          readOnly: true
+        banner_image:
+          type: string
+          readOnly: true
+        slug:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          maxLength: 100
+        logo:
+          type: string
+          format: uri
+        description:
+          type: string
+        is_active:
+          type: boolean
+        on_sale:
+          type: boolean
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - banner_image
+      - categories
+      - created_on
+      - description
+      - id
+      - logo
+      - products
+      - seller
+      - slug
+      - total_follower
+      - updated_on
+    StoreProduct:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          readOnly: true
+        category:
+          type: integer
+          nullable: true
+        image:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          nullable: true
+          description: Describe the product
+        average_rating:
+          type: string
+          readOnly: true
+        price:
+          type: string
+          readOnly: true
+        discount:
+          type: string
+          readOnly: true
+        sale_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        view_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        product_detail_id:
+          type: string
+          readOnly: true
+      required:
+      - average_rating
+      - discount
+      - id
+      - image
+      - name
+      - price
+      - product_detail_id
+      - slug
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order_detail:
+          type: string
+          readOnly: true
+        amount:
+          type: string
+          readOnly: true
+        payment_method:
+          $ref: '#/components/schemas/PaymentMethodEnum'
+        status:
+          $ref: '#/components/schemas/TransactionStatusEnum'
+        source:
+          type: string
+          nullable: true
+          maxLength: 100
+        transaction_reference:
+          type: string
+          nullable: true
+          maxLength: 200
+        transaction_detail:
+          type: string
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - amount
+      - created_on
+      - id
+      - order_detail
+      - updated_on
+    TransactionStatusEnum:
+      enum:
+      - pending
+      - failed
+      - success
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `failed` - Failed
+        * `success` - Success
+    TypeEnum:
+      enum:
+      - work
+      - home
+      - other
+      type: string
+      description: |-
+        * `work` - Work
+        * `home` - Home
+        * `other` - Other
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        phone_number:
+          type: string
+          readOnly: true
+        date_joined:
+          type: string
+          format: date-time
+      required:
+      - phone_number
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

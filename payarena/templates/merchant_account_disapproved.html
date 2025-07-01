@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;1,300&family=Roboto:ital,wght@0,100;0,400;0,500;1,400;1,500&display=swap"
+            rel="stylesheet"
+    />
+    <title>Merchant Declined</title>
+
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: karla, sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .logo {
+        height: 40px;
+        margin: 40px;
+      }
+      .order {
+        border-radius: 4px;
+        height: 60px;
+        background: #00b3fe;
+        margin: 0 20px;
+        color: white;
+        text-align: center;
+        padding: 16px 0;
+        margin-bottom: 30px;
+      }
+
+      .message {
+        margin-left: 30px;
+        margin-bottom: 10px;
+      }
+
+      li {
+        margin-left: 20px;
+        line-height: 2rem;
+      }
+      .steps {
+        margin-top: 30px;
+        margin-left: 20px;
+      }
+
+      button {
+        margin: auto;
+        display: flex;
+        margin-bottom: 30px;
+        width: 8rem;
+        height: 2rem;
+        justify-content: center;
+        border: none;
+        border-radius: 6px;
+        background: coral;
+        padding: 6px 0;
+        color: white;
+        cursor: pointer;
+      }
+
+      .order-breakdown {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      span {
+        color: coral;
+        text-decoration: underline;
+      }
+      /*
+      .break {
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+        margin-bottom: 30px;
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+      } */
+
+      .help {
+        margin: 20px;
+      }
+
+      .regards {
+        margin-left: 20px;
+        margin-top: 20px;
+      }
+
+      hr {
+        margin: 0 20px;
+        border: 0.5px dotted;
+      }
+
+      @media (max-width: 400px) {
+        .order {
+          font-size: 10px;
+          width: 280px;
+          height: 40px;
+        }
+      }
+
+    </style>
+</head>
+<body>
+<header>
+    <img class="logo" src="https://payarenamall.tm-dev.xyz/static/payarena_logo.jpeg" alt=""/>
+</header>
+
+<main>
+    <section class="order">
+        <h1>Your Merchant Account Registration Was Disapproved</h1>
+    </section>
+    <section class="message">
+        <p>Dear Merchant,</p>
+        <br/>
+        <p>
+           We appreciate your interest in selling on our mall.
+            After careful review of your application we regret to inform you that your seller registration was declined for the following reason(s):
+
+<!--            <hr/>-->
+                <section class="steps">
+                    <blockquote style="color: red; font-style: italic;">
+                    {{ reason }}
+                    </blockquote>
+                </section>
+
+<!--            <hr/>-->
+
+            Please know that this decision doesn't mean that you cannot become a seller on the Mall, and we would welcome the chance to reonboard.
+
+            Kindly review decline reasons and login to <a href="https://mall.payarena.com">mall.payarena.com</a> to make another seller registration same way you did the first time.
+
+            Thank you again for your interest in becoming a seller on our platform.
+        </p>
+
+    </section>
+
+    <section>
+        <p class="help">
+            For Further assistance with your order, please contact us at
+            help@payarenamall.com <br/><br/>
+            if you need further assistance, please, contact us by email at <br/>
+            help@payarenaemail.com or call 070xxxxxx or 080xxxxxx
+        </p>
+
+        <hr/>
+
+        <p class="regards">
+            Best Regards
+            <br/><br/>
+            <br/>
+
+            The PayArena Team.
+        </p>
+    </section>
+</main>
+</body>
+</html>
